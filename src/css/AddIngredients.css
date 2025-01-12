@@ -1,0 +1,63 @@
+/* Container */
+.add-ingredients-container {
+    position: absolute;
+    top: 50px; /* Distance from the top */
+    left: 20px; /* Pops from the left */
+    width: 300px;
+    background-color: #fff;
+    border: 2px solid #ff80ab; /* Pink contour */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    z-index: 1000;
+}
+
+/* Form Styles */
+.add-ingredients-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-ingredients-form h2 {
+    color: #ff80ab;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.add-ingredients-form input {
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+.add-ingredients-form input:focus {
+    border-color: #ff80ab; /* Pink border on focus */
+    box-shadow: 0 0 5px rgba(255, 128, 171, 0.5);
+}
+
+.add-ingredients-form button {
+    background-color: #ff80ab;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-ingredients-form button:hover {
+    background-color: #d81b60; /* Darker pink on hover */
+}
+
+/* Message */
+.message {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: #d81b60;
+}
