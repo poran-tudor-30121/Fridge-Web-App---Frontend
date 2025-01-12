@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function AddIngredients() {
+function AddIngredients({ onIngredientAdded }) {
     const [username, setUsername] = useState('');
     const [ingredientName, setIngredientName] = useState('');
     const [quantity, setQuantity] = useState('');
@@ -36,6 +36,9 @@ function AddIngredients() {
             setIngredientName('');
             setQuantity('');
             setUnit('');
+
+            // Trigger the ingredients refresh by calling the callback function
+            onIngredientAdded();
 
         } catch (error) {
             setMessage('Error: ' + (error.response?.data?.message || 'Unknown error'));

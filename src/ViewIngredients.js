@@ -299,7 +299,7 @@ function ViewIngredients() {
                 overlayClassName="modal-overlay"
             >
                 <h2>Add Ingredient</h2>
-                <AddIngredients />
+                <AddIngredients onIngredientAdded={handleButtonClick} />  {/* Pass the handleButtonClick function */}
                 <button onClick={closeModal} className="btn">Close</button>
             </Modal>
         </div>
