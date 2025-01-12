@@ -1,13 +1,12 @@
 /* General Styling */
 .view-ingredients-container {
     font-family: Arial, sans-serif;
-    padding: 20px;
     color: #333;
     display: flex;
     justify-content: space-between;
     gap: 20px;
-    height: 100vh;
-    width: 800px;
+    height: calc(100vh - 120px); /* Reduced by the height of the menu bar */
+    width: 100%;
 }
 
 /* Top Bar */
@@ -20,13 +19,26 @@
     z-index: 999; /* ensures buttons stay on top of other elements */
 }
 
+/* Menu Bar */
+.menu-bar {
+    position: fixed; /* Fixed positioning so it's always visible */
+    top: 0; /* Stick to the top */
+    right: 0; /* Align to the right of the screen */
+    background-color: #ff80ab;
+    padding: 20px;
+    z-index: 1000; /* High z-index to make sure it's on top */
+    display: flex;
+    justify-content: flex-end;
+    width: 100%; /* Adjust the width as needed */
+}
+
 /* Ingredients Section */
 .ingredients-section {
     flex: 2;
     background-color: #f9f9f9;
     border-radius: 10px;
     padding: 50px;
-    max-width: 25%;
+    max-width: 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: grid;
     flex-direction: column;

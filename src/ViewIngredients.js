@@ -17,6 +17,11 @@ function ViewIngredients() {
     const [hasFetchedIngredients, setHasFetchedIngredients] = useState(false); // Track if ingredients are fetched
     const UNSPLASH_ACCESS_KEY = 'jZGBroXW0ZgT-pwuPDWZQgLzNv-y6Shs1t-rsxnQW3o'; // Replace with your actual Unsplash API key
 
+    useEffect(() => {
+        // Automatically trigger handleButtonClick when the component is mounted
+        handleButtonClick();
+    }, []); // Empty dependency array ensures this runs only once after the component mou
+
 
     const getIngredients = (recipe) => {
         const ingredients = [];
@@ -106,7 +111,9 @@ function ViewIngredients() {
     };
 
     const handleButtonClick = async (event) => {
-        event.preventDefault();
+        // Only call event.preventDefault if this function is triggered by a button click event
+        if (event) event.preventDefault();
+
         try {
             const token = localStorage.getItem('token');
             if (!token) {
@@ -131,7 +138,7 @@ function ViewIngredients() {
             setHasFetchedIngredients(true); // Set the flag to true after fetching ingredients
 
             // Only toggle visibility if ingredients have been fetched
-            setShowIngredients((prev) => !prev);
+            setShowIngredients(true); // Show ingredients directly since it's on page load
 
         } catch (error) {
             setMessage('Error: ' + (error.response ? error.response.data.message : 'Unable to fetch ingredients'));
@@ -181,23 +188,15 @@ function ViewIngredients() {
 
     return (
         <div className="view-ingredients-container">
-            {/* Top Bar */}
-            <div className="top-bar">
-                <button onClick={handleButtonClick} className="btn">
-                    {showIngredients ? 'Hide Ingredients' : 'View Ingredients'}
-                </button>
-
-                <button onClick={openModal} className="btn">Add Ingredient</button>
-                <button onClick={handleFindRecipes} className="btn">Find Recipes</button>
+            <div className="menu-bar">
                 <button onClick={handleLogout} className="btn logout-btn">Logout</button>
             </div>
-
-            {message && <p className="message">{message}</p>}
-
-            {/* Ingredients Section */}
-            {showIngredients && (
+            <div className="content">
+                {/* Ingredients Section */}
                 <div className="ingredients-section">
                     <h2>Ingredients</h2>
+                    <button onClick={openModal} className="btn add-ingredient-btn">Add Ingredient</button>
+                    {message && <p className="message">{message}</p>}
                     <div className="ingredients-list">
                         {ingredients.length > 0 ? (
                             ingredients.map((ingredient, index) => (
@@ -222,13 +221,14 @@ function ViewIngredients() {
                         )}
                     </div>
                 </div>
-            )}
+            </div>
 
             {/* Recipes Section */}
             <div className="recipes-section">
+                <h2>Recipes</h2>
+                <button onClick={handleFindRecipes} className="btn find-recipes-btn">Find Recipes</button>
                 {recipes.length > 0 && (
                     <>
-                        <h2>Recipes</h2>
                         <div className="recipes-list-container">
                             {recipes.map((recipe, index) => {
                                 // Assuming ingredients are stored as separate fields in recipe object
